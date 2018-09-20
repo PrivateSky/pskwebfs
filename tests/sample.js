@@ -1,5 +1,5 @@
-require("../../../engine/core").enableTesting();
-const assert = $$.requireModule("double-check").assert;
+require("../../../builds/devel/pskruntime.js");
+const assert = require("double-check").assert;
 // const assert = require("double-check").assert;
 const arr1 = [1, 2, 3];
 const arr2 = [1, 2];
