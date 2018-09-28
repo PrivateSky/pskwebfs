@@ -2,7 +2,7 @@ require("../../../builds/devel/pskruntime.js");
 const assert = require("double-check").assert;
 var abstractFs = require('../lib/fs');
 
-const validPath = 'mynewfyile.txt';
+const validPath = 'mynewfile.txt';
 const contentOfValidFile = 'Hello, world!';
 
 
@@ -49,6 +49,27 @@ function testReadFile(path) {
     });
 }
 
-//testRead(validPath);
-//testPartialRead(validPath);
+// testRead(validPath);
+// testPartialRead(validPath);
 testReadFile(validPath);
+
+
+
+// char buffer[BUFFER_SIZE];
+// while (1) {
+//     bytes_read = read(sd, buffer, BUFFER_SIZE);
+
+//     if (bytes_read == 0)
+//         break;
+//     if (bytes_read == -1) {
+//         perror("read");
+//         return;
+//     }
+//     if (write(fd, buffer, bytes_read) == -1) {
+//         perror("write");
+//         return;
+//     }
+//     if (bytes_read < BUFFER_SIZE) {
+//         break;
+//     }
+// }
