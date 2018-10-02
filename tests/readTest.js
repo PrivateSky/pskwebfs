@@ -29,7 +29,7 @@ function testPartialRead(path) {
     abstractFs.open(path, "r", function (error, fd) {
 
         if (error) throw error;
-        var bufferLength = 30;
+        var bufferLength = 3;
         var buffer = new Buffer(bufferLength);
         abstractFs.read(fd, buffer, 0, bufferLength, 2, function (error, bytesRead, buffer) {
             assert.equal(error, null, 'TEST FAILED: err not null');
@@ -42,34 +42,21 @@ function testPartialRead(path) {
     });
 }
 
-function testReadFile(path) {
+function testReadHugeFile(path) {
     abstractFs.readFile(path, function (err, buffer) {
         console.log('err ', err);
-        console.log('buffer', buffer.toString());
+        console.log('testReadHugeFile', buffer.length);
+        console.timeEnd('testReadHugeFile');
     });
 }
+testRead(validPath);
+testPartialRead(validPath);
 
-// testRead(validPath);
-// testPartialRead(validPath);
-testReadFile(validPath);
-
-
-
-// char buffer[BUFFER_SIZE];
-// while (1) {
-//     bytes_read = read(sd, buffer, BUFFER_SIZE);
-
-//     if (bytes_read == 0)
-//         break;
-//     if (bytes_read == -1) {
-//         perror("read");
-//         return;
-//     }
-//     if (write(fd, buffer, bytes_read) == -1) {
-//         perror("write");
-//         return;
-//     }
-//     if (bytes_read < BUFFER_SIZE) {
-//         break;
-//     }
-// }
+console.time('testReadHugeFile');
+testReadHugeFile(validPath);
+// testReadHugeFile('EmimStoma.zip');
+// console.time('readFileWithStream');
+// readFileWithStream('EmimStoma.zip', function (err, buffer) {
+//     console.log('readFileWithStream', buffer.length);
+//     console.timeEnd('readFileWithStream');
+// });
