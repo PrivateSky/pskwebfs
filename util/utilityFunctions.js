@@ -1,5 +1,5 @@
 function detectStrategy(){
-    if(module.exports === "undefined" && typeof window ==="object"){
+    if(typeof window ==="object"){
         return "web";
     }
     else{
