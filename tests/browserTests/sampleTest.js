@@ -6,6 +6,19 @@ fs.appendFile("/indexed/text.txt", "Salut din IndexedDB\n", function (err,respon
     })
 });
 
+setTimeout(function(){
+    const fs = require("fs");
+    var readStream = fs.createReadStream("/indexed/text.txt");
+    console.log(readStream);
+    readStream
+        .on('data', function (err, chunk) {
+            console.log(chunk.toString());
+        })
+        .on('end', function () {
+            console.log("end");
+        });
+},1200);
+
 
 
 
