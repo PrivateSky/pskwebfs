@@ -55,16 +55,37 @@ fs.open("/indexed/text.txt", "r+", function (error, fd) {
 */
 
 
-
-var writeStream = fs.createWriteStream("/indexed/text.txt");
+/*
+var writeStream = fs.createWriteStream("/indexed/text5.txt");
 writeStream.write("Tralala");
 writeStream.on('finish', () => {
     console.log('wrote all data to file');
 });
+writeStream.on('error', (err) => {
+    console.log('ERr',err);
+});
 writeStream.end("Mastaleru");
 writeStream.write("Rafael");
 
-/*setTimeout(function(){
+setTimeout(function(){
+    fs.readFile("/indexed/text5.txt",function(err, contents){
+        console.log(contents.toString());
+    });
+},500);
+*/
+
+var readStream = fs.createReadStream("/indexed/text5.txt");
+var writeStream = fs.createWriteStream("/indexed/text6.txt");
+
+readStream.pipe(writeStream);
+
+setTimeout(function(){
+    fs.readFile("/indexed/text6.txt",function(err, contents){
+        console.log(contents.toString());
+    });
+},500);
+
+setTimeout(function(){
     const fs2 = require("fs");
     var readStream = fs2.createReadStream("/indexed/text.txt");
 
@@ -73,6 +94,7 @@ writeStream.write("Rafael");
             .on('data', function (chunk) {
                 console.log(chunk.toString());
             });
+
         console.log(s);
     },1000);
     readStream
@@ -81,7 +103,7 @@ writeStream.write("Rafael");
         }).on('end',function(){
         console.log("end2")
     });
-},1400);*/
+},1400);
 
 
 
